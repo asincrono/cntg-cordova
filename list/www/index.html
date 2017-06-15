@@ -34,17 +34,20 @@
             <label for="description">Thing description</label>
             <input type="text" class="form-control" id="description" v-model="thing.description">
           </div>
-          <button type="submit" class="btn btn-primary">Add thing</button>
+          <button type="submit" class="btn btn-primary" v-if="!updating">Add thing</button>
+          <button class="btn btn-warning" v-if="updating" v-on:click="updateValue">Update thing</button>
         </form>
       </div>
     </div>
     <div class="row">
       <div class="col col-xs-12">
         <ul class="list-group">
-          <li v-for="thing in things">
+          <li v-for="(thing, index) in things">
             <h3>Name: {{ thing.name }}</h3>
             <p>Description: {{ thing.description }}</p>
             <p>Date: {{ thing.date }}</p>
+            <button class="btn btn-primary" v-on:click="updateThing(index)">Update</button>
+            <button class="btn btn-danger"  v-on:click="deleteThing(index)">Delete</button>
           </li>
         </ul>
       </div>
