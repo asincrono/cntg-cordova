@@ -9,13 +9,14 @@ new Vue({
     things: []
   },
   methods: {
-    addThing: function (event) {
-      if(event) event.preventDefault()
-      console.log('Love is in the air')
+    addThing: function () {
+      this.thing.date = new Date()
+      this.things.push(this.thing)
     },
 
     submitForm: function () {
-      console.log('Form submitted')
+      this.thing.date = new Date()
+      this.things.push(this.thing)
     }
   }
 })
