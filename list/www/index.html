@@ -4,52 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <script src="bower_components/vue/dist/vue.js" defer></script>
   <script src="bower_components/vue-resource/dist/vue-resource.js" defer></script>
   <script src="bower_components/jquery/dist/jquery.min.js" defer></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js" defer></script>
-  <script src="js/vue.js" defer></script>
+  <script src="js/register.js" defer></script>
+  <title>Register</title>
 </head>
 <body>
-  <div class="container-fluid" id="things">
+  <div class="container-fluid">
     <div class="row">
       <div class="col col-xs-12">
-        <div class="jumbtron">
-          <h1>List App</h1>
-          <p>Powered by Cordova & Vue</p>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col col-xs-12">
-        <h3>Add a thing</h3>
-        <form v-on:submit.prevent="submitForm" >
+        <form v-on:submit:prevent="saveUser" id="registerForm">
           <div class="form-group">
-            <label for="name">Thing name</label>
-            <input type="text" class="form-control" id="name" v-model="thing.name">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" v-model="userData.email">
           </div>
           <div class="form-group">
-            <label for="description">Thing description</label>
-            <input type="text" class="form-control" id="description" v-model="thing.description">
+            <label for="lat">First name</label>
+            <input type="text" class="form-control" id="firstName" v-model="userData.firstName">
           </div>
-          <button type="submit" class="btn btn-primary" v-if="!updating">Add thing</button>
-          <button class="btn btn-warning" v-if="updating" v-on:click="updateValue">Update thing</button>
+          <div class="form-group">
+            <label for="lng">Last name</label>
+            <input type="text" class="form-control" id="lastName" v-model="userData.lastName">
+          </div>
+          <div class="form-group">
+            <label for="phoneNumber">Phone number</label>
+            <input type="text" class="form-control" id="phoneNumber">
+          </div>
+          <button type="submit" class="btn btn-primary">Save</button>
         </form>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col col-xs-12">
-        <ul class="list-group">
-          <li v-for="(thing, index) in things">
-            <h3>Name: {{ thing.name }}</h3>
-            <p>Description: {{ thing.description }}</p>
-            <p>Date: {{ thing.date }}</p>
-            <button class="btn btn-primary" v-on:click="updateThing(index)">Update</button>
-            <button class="btn btn-danger"  v-on:click="deleteThing(index)">Delete</button>
-          </li>
-        </ul>
       </div>
     </div>
   </div>
